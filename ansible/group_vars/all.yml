@@ -1,0 +1,3 @@
+project_root: "{{ playbook_dir }}/.."
+backend_root: "{{ project_root }}/backend"
+frontend_root: "{{ project_root }}/frontend"

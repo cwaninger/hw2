@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Update DB - "Check if migrations folder exists"
+      stat:
+        path: "{{ flask_root }}/migrations"
+      register: dbinit
+
+    - name: Update DB - Initialize DB
+      shell: 
+        cmd: "{{ flask_root }}/venv/bin/flask db init"
+        chdir: "{{ flask_root }}"
+      when: not dbinit.stat.exists
+
+    - name: Update DB - "Migrate DB"
+      shell:
+        cmd: "{{ flask_root }}/venv/bin/flask db migrate"
+        chdir: "{{ flask_root }}"
+
+    - name: Update DB - "Upgrade DB"
+      shell:
+        cmd: "{{ flask_root }}/venv/bin/flask db upgrade"
+        chdir: "{{ flask_root }}"
