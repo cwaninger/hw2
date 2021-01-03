@@ -14,6 +14,7 @@ class User(db.Model):
     lastname = db.Column(db.String(15), nullable=False)
     email = db.Column(db.String(50), nullable=False, unique=True)
     password_hash = db.Column(db.String, nullable=True)
+    user_type_id = db.Column(db.Integer, db.ForeignKey('usertype.id'))
 
     # Status
     last_seen = db.Column(db.Integer, nullable=True)

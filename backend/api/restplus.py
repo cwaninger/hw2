@@ -28,6 +28,8 @@ def database_not_found_error_handler(e):
 
 # Import all Endpoint Namespaces
 from api.endpoints.user import ns as user_namespace
+from api.endpoints.usertype import ns as usertype_namespace
 
 # Add all Endpoint Namespaces to API
 api.add_namespace(user_namespace)
+api.add_namespace(usertype_namespace)

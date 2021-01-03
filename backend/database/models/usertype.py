@@ -12,7 +12,6 @@ class Usertype(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     type_name = db.Column(db.String(20), nullable=False)
     description = db.Column(db.String(50), nullable=True)
-    users = db.relationship("User", cascade="save-update, merge, delete")
 
     def __repr__(self):
         return '<Usertype %r>' % self.type_name
