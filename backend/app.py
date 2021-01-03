@@ -10,11 +10,10 @@ from flask_swagger import swagger
 import os
 
 # App_specific imports
-from database import db
+from database import db, migrate
 from utils.mail import mail
 from utils.logging import initLogging
 from api.restplus import api
-#from api import generate_endpoints
 
 def configure_app():
     if os.environ.get('FLASK_ENV') == 'production':
@@ -28,7 +27,7 @@ def init_app():
 
     initLogging()
     CORS(app)
-    #migrate.init_app(app, db)
+    migrate.init_app(app, db)
     app.register_blueprint(blueprint)
     db.init_app(app)
 
